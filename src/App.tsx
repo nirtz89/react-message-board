@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { FirestoreProvider } from '@react-firebase/firestore';
 import "firebase/auth";
 import styled from 'styled-components';
-import Main from './components/Nav/Main/Main';
+import Main from './components/Main/Main';
 import Nav from './components/Nav/Nav';
 import { firebaseConfig } from './configs/firebaseConfig';
 import { colors, hexToRGBA } from './constants/colors';

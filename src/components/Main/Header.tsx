@@ -2,8 +2,8 @@ import { FirebaseAuthConsumer } from '@react-firebase/auth';
 import firebase from 'firebase';
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import { colors } from '../../../constants/colors';
-import { dbUtil } from '../../../utils/dbUtil';
+import { colors } from '../../constants/colors';
+import { dbUtil } from '../../utils/dbUtil';
 import Modal from '../Shared/Modal';
 import SubTimePicker from './SubTimePicker';
 

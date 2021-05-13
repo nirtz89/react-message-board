@@ -2,8 +2,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import styled from 'styled-components';
-import { colors, hexToRGBA } from '../../../constants/colors';
-import { zIndexUtil } from '../../../utils/zIndexUtil';
+import { colors, hexToRGBA } from '../../constants/colors';
+import { zIndexUtil } from '../../utils/zIndexUtil';
 
 const StyledModal = styled.div`
     background: ${hexToRGBA(colors.white,0.5)};

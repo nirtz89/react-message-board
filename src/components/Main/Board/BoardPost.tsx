@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'
 import React from 'react'
 import styled from 'styled-components';
-import { colors } from '../../../../constants/colors';
+import { colors } from '../../../constants/colors';
 import User from '../../Shared/User';
 
 dayjs.extend(relativeTime);

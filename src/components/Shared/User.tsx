@@ -1,7 +1,7 @@
 import { FirestoreDocument } from '@react-firebase/firestore';
 import React from 'react'
 import styled from 'styled-components';
-import { colors } from '../../../constants/colors';
+import { colors } from '../../constants/colors';
 import LevelIndicator, { ELevelIndicatorSize } from './LevelIndicator';
 
 interface IUserProps {
