@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import Main from './components/Nav/Main/Main';
+import Nav from './components/Nav/Nav';
+import { colors, hexToRGBA } from './constants/colors';
+
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(${colors.gradientGray}, ${colors.gradientWhite});
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 90vw;
+  box-shadow: 0 0 35px 0px ${hexToRGBA(colors.darkerGray,1)};
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledWrapper>
+      <StyledContainer>
+        <Nav />
+        <Main />
+      </StyledContainer>
+    </StyledWrapper>
   );
 }
 
