@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../../constants/colors';
+import BoardPost from './BoardPost';
 
 const StyledBoardWrapper = styled.div`
     display: flex;
@@ -16,12 +17,23 @@ const StyledBoard = styled.div`
     margin-right: 8px;
     padding: 32px;
     background: ${colors.white};
+    overflow-y: auto;
 `;
 
 const Board = () => {
     return (
         <StyledBoardWrapper>
             <StyledBoard>
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
+                <BoardPost />
             </StyledBoard>
         </StyledBoardWrapper>
     )
