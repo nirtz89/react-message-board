@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../../constants/colors';
 import BoardPost from './BoardPost';
+import { FirestoreCollection } from '@react-firebase/firestore';
 
 const StyledBoardWrapper = styled.div`
     display: flex;
@@ -24,16 +25,11 @@ const Board = () => {
     return (
         <StyledBoardWrapper>
             <StyledBoard>
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
-                <BoardPost />
+                <FirestoreCollection path="/posts/">
+                    {post => {
+                        return post.isLoading ? "Loading" : <BoardPost title={post.value} user="Nirtz89" />;
+                    }}
+                </FirestoreCollection>
             </StyledBoard>
         </StyledBoardWrapper>
     )

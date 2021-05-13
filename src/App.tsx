@@ -1,7 +1,10 @@
+import { FirebaseDatabaseProvider } from '@react-firebase/database';
+import firebase from 'firebase';
 import React from 'react';
 import styled from 'styled-components';
 import Main from './components/Nav/Main/Main';
 import Nav from './components/Nav/Nav';
+import { firebaseConfig } from './configs/firebaseConfig';
 import { colors, hexToRGBA } from './constants/colors';
 
 const StyledWrapper = styled.div`
@@ -22,14 +25,18 @@ const StyledContainer = styled.div`
   box-shadow: 0 0 35px 0px ${hexToRGBA(colors.darkerGray,1)};
 `;
 
+firebase.initializeApp(firebaseConfig);
+
 function App() {
   return (
-    <StyledWrapper>
-      <StyledContainer>
-        <Nav />
-        <Main />
-      </StyledContainer>
-    </StyledWrapper>
+    <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
+      <StyledWrapper>
+        <StyledContainer>
+          <Nav />
+          <Main />
+        </StyledContainer>
+      </StyledWrapper>
+    </FirebaseDatabaseProvider>
   );
 }
 

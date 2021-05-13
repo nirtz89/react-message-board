@@ -8,6 +8,7 @@ import NavButton from './NavButton';
 const Nav = () => {
 
     const StyledNav = styled.nav`
+        transition: 1s all;
         width: 300px;
         height: 100%;
         border-top-left-radius: 8px;

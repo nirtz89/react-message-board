@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../../constants/colors';
-import LevelIndicator, { ELevelIndicatorSize } from '../../Shared/LevelIndicator';
 import User from '../../Shared/User';
 
 const StyledBoardPost = styled.div`
@@ -66,7 +65,22 @@ const StyledVote = styled.div`
     color: ${colors.evenDarkerGray};
 `;
 
-const BoardPost = () => {
+const StyledVoteButton = styled.div`
+    transition: .18s all;
+    cursor: pointer;
+    &:hover {
+        transform: scale(2);
+        color: ${colors.redditOrange};
+    }
+`
+
+interface IBoardPostProps {
+    title: string;
+    img?: string;
+    user: string;
+}
+
+const BoardPost = ({title, img = '', user}: IBoardPostProps) => {
     return (
         <StyledBoardPost>
             <StyledBoardImageAndMoreWrapper>
@@ -74,7 +88,7 @@ const BoardPost = () => {
                     <img src={'https://picsum.photos/150/80?'+Math.random()} alt="Post" />
                 </StyledBoardPostImage>
                 <StyledBoardTitleAndDescription>
-                    <h3>Keanu Reeves and River Phoenix in LA - 1991</h3>
+                    <h3>{title}</h3>
                     <span>Submitted 4 hours ago by <img src="./reddit-icon.png" alt="Reddit Logo" /> <User name="Nirtz89" /></span>
                     <span>84 comments</span>
                 </StyledBoardTitleAndDescription>
@@ -82,9 +96,9 @@ const BoardPost = () => {
             <StyledBoardMore>
                 <FontAwesomeIcon icon={faEllipsisV} />
                 <StyledVote>
-                    <FontAwesomeIcon icon={faCaretUp} />
+                    <StyledVoteButton><FontAwesomeIcon icon={faCaretUp} /></StyledVoteButton>
                     <span>300</span>
-                    <FontAwesomeIcon icon={faCaretDown} />
+                    <StyledVoteButton><FontAwesomeIcon icon={faCaretDown} /></StyledVoteButton>
                 </StyledVote>
             </StyledBoardMore>
         </StyledBoardPost>
