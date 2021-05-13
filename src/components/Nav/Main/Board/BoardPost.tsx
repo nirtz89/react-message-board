@@ -34,6 +34,7 @@ const StyledBoardTitleAndDescription = styled.div`
     align-items: flex-start;
     h3 {
         font-size: 14px;
+        margin: 0;
     }
     span {
         color: ${colors.evenDarkerGray};

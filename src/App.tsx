@@ -1,6 +1,6 @@
-import { FirebaseDatabaseProvider } from '@react-firebase/database';
-import firebase from 'firebase';
 import React from 'react';
+import { FirestoreProvider } from '@react-firebase/firestore';
+import firebase from 'firebase';
 import styled from 'styled-components';
 import Main from './components/Nav/Main/Main';
 import Nav from './components/Nav/Nav';
@@ -25,18 +25,16 @@ const StyledContainer = styled.div`
   box-shadow: 0 0 35px 0px ${hexToRGBA(colors.darkerGray,1)};
 `;
 
-firebase.initializeApp(firebaseConfig);
-
 function App() {
   return (
-    <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
+    <FirestoreProvider firebase={firebase} {...firebaseConfig as any}>
       <StyledWrapper>
         <StyledContainer>
           <Nav />
           <Main />
         </StyledContainer>
       </StyledWrapper>
-    </FirebaseDatabaseProvider>
+    </FirestoreProvider>
   );
 }
 

@@ -39,7 +39,7 @@ const StyledModNameAndDate = styled.div`
 `;
 
 const StyledModName = styled.span`
-    color: ${colors.mainFontBlack}
+    color: ${colors.mainFontBlack};
 `;
 
 const StyledDate = styled.span`

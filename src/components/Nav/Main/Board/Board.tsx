@@ -26,8 +26,11 @@ const Board = () => {
         <StyledBoardWrapper>
             <StyledBoard>
                 <FirestoreCollection path="/posts/">
-                    {post => {
-                        return post.isLoading ? "Loading" : <BoardPost title={post.value} user="Nirtz89" />;
+                    {posts => {
+                        return posts.isLoading ? "Loading" : 
+                        <>
+                            {posts.value.map((post: any, index: number) => <BoardPost title={post.title} user="Nirtz89" key={index} />)}
+                        </>
                     }}
                 </FirestoreCollection>
             </StyledBoard>
