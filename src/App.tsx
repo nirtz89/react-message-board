@@ -1,11 +1,13 @@
 import React from 'react';
 import { FirestoreProvider } from '@react-firebase/firestore';
 import firebase from 'firebase';
+import "firebase/auth";
 import styled from 'styled-components';
 import Main from './components/Nav/Main/Main';
 import Nav from './components/Nav/Nav';
 import { firebaseConfig } from './configs/firebaseConfig';
 import { colors, hexToRGBA } from './constants/colors';
+import { FirebaseAuthProvider } from '@react-firebase/auth';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -27,14 +29,16 @@ const StyledContainer = styled.div`
 
 function App() {
   return (
-    <FirestoreProvider firebase={firebase} {...firebaseConfig as any}>
-      <StyledWrapper>
-        <StyledContainer>
-          <Nav />
-          <Main />
-        </StyledContainer>
-      </StyledWrapper>
-    </FirestoreProvider>
+    <FirebaseAuthProvider firebase={firebase} {...firebaseConfig as any}>
+      <FirestoreProvider firebase={firebase} {...firebaseConfig as any}>
+        <StyledWrapper>
+          <StyledContainer>
+            <Nav />
+            <Main />
+          </StyledContainer>
+        </StyledWrapper>
+      </FirestoreProvider>
+    </FirebaseAuthProvider>
   );
 }
 

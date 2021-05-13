@@ -1,3 +1,5 @@
+import { FirebaseAuthConsumer } from '@react-firebase/auth';
+import firebase from 'firebase';
 import React from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../constants/colors';
@@ -41,17 +43,48 @@ const StyledHeaderUser = styled.div`
     }
 `;
 
+const StyledAddPostButton = styled.button`
+    background: ${colors.redditOrange};
+    color: ${colors.white};
+    font-size: 12px;
+    border-radius: 8px;
+    border: 0;
+    opacity: 0.5;
+    transition: .18s all;
+    cursor: pointer;
+    &:hover {
+        opacity: 1;
+    }
+`;
+
 const Header = () => {
     return (
         <StyledHeaderWrapper>
             <StyledHeaderTitle>
                 <h2>Controversial</h2>
                 <SubTimePicker />
+                <FirebaseAuthConsumer>
+                        {({ isSignedIn, user, providerId }) => {
+                            return isSignedIn ? <StyledAddPostButton>New Post</StyledAddPostButton> : <StyledAddPostButton onClick={() => {
+                                const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                                firebase.auth().signInWithPopup(googleAuthProvider);
+                              }}>Login to Post</StyledAddPostButton>
+                        }}
+                </FirebaseAuthConsumer>
             </StyledHeaderTitle>
             <StyledHeaderUserAndSearch>
                 <StyledHeaderUser>
-                    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb" alt="User" />
-                    <span>Julia</span>
+                    <FirebaseAuthConsumer>
+                        {({ isSignedIn, user, providerId }) => {
+                            return (
+                                isSignedIn &&
+                                <>
+                                    <img src={user.photoURL} alt="User" onClick={() => {firebase.auth().signOut();}}/>
+                                    <span>{user.displayName.split(" ")[0]}</span>
+                                </>
+                            );
+                        }}
+                    </FirebaseAuthConsumer>
                 </StyledHeaderUser>
             </StyledHeaderUserAndSearch>
         </StyledHeaderWrapper>

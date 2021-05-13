@@ -10,9 +10,10 @@ export enum ELevelIndicatorSize {
 
 interface ILevelIndicatorProps {
     size: ELevelIndicatorSize
+    level: number;
 }
 
-const LevelIndicator = ({ size }: ILevelIndicatorProps) => {
+const LevelIndicator = ({ size, level }: ILevelIndicatorProps) => {
 
     const StyledLevelIndidcator = styled.div`
         display: flex;
@@ -28,7 +29,7 @@ const LevelIndicator = ({ size }: ILevelIndicatorProps) => {
             opacity: 1;
         }
         div {
-            width: 50%;
+            width: ${level}%;
             background: ${colors.redditOrange};
             height: 100%;
         }

@@ -1,9 +1,13 @@
 import { faCaretDown, faCaretUp, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
 import React from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../../constants/colors';
 import User from '../../Shared/User';
+
+dayjs.extend(relativeTime);
 
 const StyledBoardPost = styled.div`
     display: flex;
@@ -78,10 +82,12 @@ const StyledVoteButton = styled.div`
 interface IBoardPostProps {
     title: string;
     img?: string;
-    user: string;
+    userId: string;
+    numComments: number;
+    timestamp: any;
 }
 
-const BoardPost = ({title, img = '', user}: IBoardPostProps) => {
+const BoardPost = ({title, img = '', userId, numComments, timestamp}: IBoardPostProps) => {
     return (
         <StyledBoardPost>
             <StyledBoardImageAndMoreWrapper>
@@ -90,8 +96,8 @@ const BoardPost = ({title, img = '', user}: IBoardPostProps) => {
                 </StyledBoardPostImage>
                 <StyledBoardTitleAndDescription>
                     <h3>{title}</h3>
-                    <span>Submitted 4 hours ago by <img src="./reddit-icon.png" alt="Reddit Logo" /> <User name="Nirtz89" /></span>
-                    <span>84 comments</span>
+                    <span>Submitted {dayjs(timestamp.toDate()).fromNow(true)} ago by <img src="./reddit-icon.png" alt="Reddit Logo" /> <User id={userId} /></span>
+                    <span>{numComments} {numComments > 1 ? "comments" : "comment"}</span>
                 </StyledBoardTitleAndDescription>
             </StyledBoardImageAndMoreWrapper>
             <StyledBoardMore>

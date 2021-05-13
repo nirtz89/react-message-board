@@ -1,10 +1,11 @@
+import { FirestoreDocument } from '@react-firebase/firestore';
 import React from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../constants/colors';
 import LevelIndicator, { ELevelIndicatorSize } from './LevelIndicator';
 
 interface IUserProps {
-    name: string;
+    id: string;
     color?: string;
     showLevel?: boolean;
     levelSize?: ELevelIndicatorSize;
@@ -16,12 +17,17 @@ const StyledUser = styled.div`
     align-items: flex-start;
 `;
 
-const User = ({ name, color = colors.mainFontBlack, showLevel = false, levelSize = ELevelIndicatorSize.SMALL }: IUserProps) => {
+const User = ({ id, color = colors.mainFontBlack, showLevel = false, levelSize = ELevelIndicatorSize.SMALL }: IUserProps) => {
     return (
-        <StyledUser>
-            <span>{name}</span>
-            <LevelIndicator size={levelSize} />
-        </StyledUser>
+        <FirestoreDocument path={`/users/${id}`}>
+        {user => {
+            return user.isLoading ? "" : 
+            <StyledUser>
+                <span>{user.value?.name}</span>
+                <LevelIndicator size={levelSize} level={user.value?.karma} />
+            </StyledUser>;
+        }}
+        </FirestoreDocument>        
     )
 }
 
