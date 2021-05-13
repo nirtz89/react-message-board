@@ -1,6 +1,6 @@
 import React from 'react';
-import { FirestoreProvider } from '@react-firebase/firestore';
 import firebase from 'firebase';
+import { FirestoreProvider } from '@react-firebase/firestore';
 import "firebase/auth";
 import styled from 'styled-components';
 import Main from './components/Nav/Main/Main';

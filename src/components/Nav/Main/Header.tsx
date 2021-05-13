@@ -1,8 +1,10 @@
 import { FirebaseAuthConsumer } from '@react-firebase/auth';
 import firebase from 'firebase';
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { colors } from '../../../constants/colors';
+import { dbUtil } from '../../../utils/dbUtil';
+import Modal from '../Shared/Modal';
 import SubTimePicker from './SubTimePicker';
 
 const StyledHeaderTitle = styled.div`
@@ -58,6 +60,9 @@ const StyledAddPostButton = styled.button`
 `;
 
 const Header = () => {
+
+    const [NewPost, setNewPost] = useState(false);
+
     return (
         <StyledHeaderWrapper>
             <StyledHeaderTitle>
@@ -65,9 +70,9 @@ const Header = () => {
                 <SubTimePicker />
                 <FirebaseAuthConsumer>
                         {({ isSignedIn, user, providerId }) => {
-                            return isSignedIn ? <StyledAddPostButton>New Post</StyledAddPostButton> : <StyledAddPostButton onClick={() => {
+                            return isSignedIn ? <StyledAddPostButton onClick={() => setNewPost(true)}>New Post</StyledAddPostButton> : <StyledAddPostButton onClick={() => {
                                 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                                firebase.auth().signInWithPopup(googleAuthProvider);
+                                firebase.auth().signInWithPopup(googleAuthProvider).then(data => dbUtil.addUser({id:data.user?.email!,img:data.user?.photoURL!,name:data.user?.displayName!}));
                               }}>Login to Post</StyledAddPostButton>
                         }}
                 </FirebaseAuthConsumer>
@@ -87,6 +92,7 @@ const Header = () => {
                     </FirebaseAuthConsumer>
                 </StyledHeaderUser>
             </StyledHeaderUserAndSearch>
+            {NewPost && <Modal onDismiss={() => setNewPost(false)}></Modal>}
         </StyledHeaderWrapper>
     )
 }
