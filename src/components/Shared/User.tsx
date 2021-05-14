@@ -27,7 +27,7 @@ const User = ({ id, color = colors.mainFontBlack, showLevel = false, levelSize =
                 <LevelIndicator size={levelSize} level={user.value?.karma} />
             </StyledUser>;
         }}
-        </FirestoreDocument>        
+        </FirestoreDocument>
     )
 }
 

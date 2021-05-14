@@ -92,7 +92,7 @@ const BoardPost = ({title, img = '', userId, numComments, timestamp}: IBoardPost
         <StyledBoardPost>
             <StyledBoardImageAndMoreWrapper>
                 <StyledBoardPostImage>
-                    <img src={'https://picsum.photos/150/80?'+Math.random()} alt="Post" />
+                    <img src={'https://picsum.photos/150/80'} alt="Post" />
                 </StyledBoardPostImage>
                 <StyledBoardTitleAndDescription>
                     <h3>{title}</h3>

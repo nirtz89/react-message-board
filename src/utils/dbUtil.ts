@@ -13,10 +13,11 @@ const db = firebase.firestore();
 
 export const dbUtil = {
     addUser: async (user: IUser) => {
-        await db.collection("users").doc(user.id).set({
+        let fbuser = await firebase.firestore().collection("users").doc(user.id).get();
+        fbuser ?? await db.collection("users").doc(user.id).set({
             name: user.name,
             img: user.img,
-            karma: 0
+            karma: 10
         })
     }
 }

@@ -1,6 +1,6 @@
+import React from 'react';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
 import styled from 'styled-components';
 import { colors, hexToRGBA } from '../../constants/colors';
 import { zIndexUtil } from '../../utils/zIndexUtil';
@@ -15,6 +15,7 @@ const StyledModal = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: ${zIndexUtil.HIGH};
 `;
 
 const StyledModalBody = styled.div`
@@ -23,7 +24,7 @@ const StyledModalBody = styled.div`
     position: relative;
     background: ${colors.white};
     box-shadow: 0 0 35px 0px ${hexToRGBA(colors.darkerGray,1)};
-    z-index: ${zIndexUtil.HIGH};
+    z-index: ${zIndexUtil.VERY_HIGH};
 `;
 
 const StyledModalCloseButton = styled.button`
@@ -46,8 +47,8 @@ interface IModalProps {
 
 const Modal = ({ children, onDismiss }: IModalProps) => {
     return (
-        <StyledModal>
-            <StyledModalBody>
+        <StyledModal className="animate__animated animate__fadeIn animate__faster">
+            <StyledModalBody className="animate__animated animate__fadeIn">
                 <StyledModalCloseButton onClick={() => onDismiss()}><FontAwesomeIcon icon={faTimes} /></StyledModalCloseButton>
                 {children}
             </StyledModalBody>

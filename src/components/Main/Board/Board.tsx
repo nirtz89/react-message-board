@@ -27,7 +27,6 @@ const Board = () => {
             <StyledBoard>
                 <FirestoreCollection path="/posts/">
                     {posts => {
-                        console.log(posts);
                         return posts.isLoading ? "Loading" : 
                         <>
                             {posts.value.map((post: any, index: number) => <BoardPost title={post.title} userId={post.userId} timestamp={post.published_timestamp} numComments={post.comments.length} key={index} />)}
